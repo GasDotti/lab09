@@ -14,8 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -50,6 +48,8 @@ public class BadIOGUI {
         final JPanel box = new JPanel();
         box.setLayout(new BoxLayout(box, BoxLayout.X_AXIS));
         box.add(write);
+        final JButton read = new JButton("Read");
+        box.add(read);
         canvas.add(box, BorderLayout.CENTER);
         /*
          * Handlers
@@ -70,6 +70,13 @@ public class BadIOGUI {
                     JOptionPane.showMessageDialog(frame, e, "Error", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace(); // NOPMD: allowed as this is just an exercise
                 }
+            }
+        });
+        read.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent ignored) {
+                System.out.println("'Read' Button has been pressed."); // NOPMD Required for this exercise
             }
         });
     }
