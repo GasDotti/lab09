@@ -43,9 +43,14 @@ public class BadIOGUI {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
-        canvas.add(write, BorderLayout.CENTER);
+        //canvas.add(write, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        final JPanel box = new JPanel();
+        box.setLayout(new BoxLayout(box, BoxLayout.X_AXIS));
+        box.add(write);
+        canvas.add(box, BorderLayout.CENTER);
         /*
          * Handlers
          */
@@ -91,6 +96,7 @@ public class BadIOGUI {
         /*
          * OK, ready to push the frame onscreen
          */
+        frame.pack(); 
         frame.setVisible(true);
     }
 
