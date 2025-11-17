@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -76,6 +79,14 @@ public class BadIOGUI {
 
             @Override
             public void actionPerformed(final ActionEvent ignored) {
+
+                try {
+                    final List<String> text = Files.readAllLines(Path.of(PATH), StandardCharsets.UTF_8);
+                    System.out.println(Integer.parseInt(text.getFirst())); // NOPMD Required
+                } catch (final IOException e) {
+                    System.err.println(e); // NOPMD Required
+                }
+
                 System.out.println("'Read' Button has been pressed."); // NOPMD Required for this exercise
             }
         });
