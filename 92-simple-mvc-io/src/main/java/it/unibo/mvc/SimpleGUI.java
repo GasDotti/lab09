@@ -2,12 +2,16 @@ package it.unibo.mvc;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * A very simple program using a graphical interface.
@@ -18,6 +22,7 @@ public final class SimpleGUI {
     private static final int PROPORTION = 4;
 
     private final JFrame frame = new JFrame("SimpleGUI");
+    private final Controller c = new Controller();
 
     /**
      * Constructor: Prepares the SimpleGUI object.
@@ -31,7 +36,18 @@ public final class SimpleGUI {
         canvas.add(btnSave, BorderLayout.SOUTH);
 
         frame.setContentPane(canvas);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        btnSave.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                try {
+                    c.saveString(txt.getText());
+                } catch (final IOException ex) {
+                    JOptionPane.showMessageDialog(btnSave, ex);
+                }
+            }
+        });
     }
 
     /**
@@ -45,11 +61,13 @@ public final class SimpleGUI {
         frame.setSize(new Dimension(newWidth, newHeight));
         frame.setLocationByPlatform(true);
 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
     /**
      * Starts the GUI by making an object and displaying it.
+     * 
      * @param args ignored.
      */
     public static void main(final String... args) {
