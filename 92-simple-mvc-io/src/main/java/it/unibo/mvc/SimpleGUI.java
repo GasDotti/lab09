@@ -50,7 +50,6 @@ public final class SimpleGUI {
 
     /**
      * Starts the GUI by making an object and displaying it.
-     * 
      * @param args ignored.
      */
     public static void main(final String... args) {
