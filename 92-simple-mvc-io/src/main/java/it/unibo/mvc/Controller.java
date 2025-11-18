@@ -14,7 +14,7 @@ public class Controller {
 
     Controller() {
         final String path = System.getProperty("user.home") + System.getProperty("file.separator") + "output.txt";
-        currentFile = new File(path);
+        this.currentFile = new File(path);
     }
 
     /**
